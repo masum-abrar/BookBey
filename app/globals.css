@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@layer base {
+  /* Fix: Instead of using @apply on the wildcard, 
+     set the variable or use standard CSS if necessary */
+  * {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* Use the CSS variables we'll define in the theme block below */
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-dm-sans), ui-sans-serif, system-ui;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Tailwind v4 uses @theme for variables */
+@theme {
+  --background: #0a0a0f;
+  --foreground: #f0ede8;
+  --color-primary: #c9a84c;
+  --color-muted: #13131c;
+  --color-muted-foreground: #a0a0af;
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(to bottom, #ffffff 40%, rgba(255,255,255,0.4) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
