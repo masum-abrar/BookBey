@@ -11,7 +11,7 @@ import {
   signInWithPopup,
   updateProfile,
 } from 'firebase/auth';
-import { auth } from '@/firebase/firebase';
+import { auth } from '@/context/firebase/firebase';
 
 interface AuthContextType {
   user: User | null;

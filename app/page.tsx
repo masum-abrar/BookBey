@@ -23,8 +23,6 @@ export default function HomePage() {
         <HeroSection books={defaultBooks} />
         <StatsStrip />
         <FeaturedGrid books={featuredBooks} />
-        <JourneySection />
-        <SpotlightSection />
         <FeaturesGrid />
         <FAQSection />
       </main>

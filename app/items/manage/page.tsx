@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-import { Search, Trash2, Eye, Plus, ShieldCheck, Database, AlertCircle } from 'lucide-react';
+import { Search, Trash2, Eye, Plus, ShieldCheck, Database, AlertCircle, Edit } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ManageBooksPage() {
@@ -155,6 +155,11 @@ export default function ManageBooksPage() {
                                                     <Link href={`/items/${book.id}`}>
                                                         <button className="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 hover:text-yellow-500 transition-all" title="View Entry">
                                                             <Eye size={18} />
+                                                        </button>
+                                                    </Link>
+                                                    <Link href={`/items/edit/${book.id}`}>
+                                                        <button className="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 hover:text-yellow-500 transition-all" title="Edit Entry">
+                                                            <Edit size={18} />
                                                         </button>
                                                     </Link>
 

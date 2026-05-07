@@ -200,10 +200,17 @@ export function getBooks(): Book[] {
 
 export function saveBooks(books: Book[]): void {
   if (typeof window === 'undefined') return;
-  // Only save non-default books (user-added)
-  const defaultIds = new Set(defaultBooks.map(b => b.id));
-  const userBooks = books.filter(b => !defaultIds.has(b.id));
-  localStorage.setItem('odyssey_books', JSON.stringify(userBooks));
+  
+  // Persist any book that is either:
+  // 1. Not in the default list (new book)
+  // 2. In the default list but has been modified
+  const toPersist = books.filter(b => {
+    const isDefault = defaultBooks.find(db => db.id === b.id);
+    if (!isDefault) return true;
+    return JSON.stringify(b) !== JSON.stringify(isDefault);
+  });
+
+  localStorage.setItem('odyssey_books', JSON.stringify(toPersist));
 }
 
 export function addBook(book: Book): void {
@@ -219,4 +226,11 @@ export function deleteBook(id: string): void {
   const books = getBooks();
   const remaining = books.filter(b => b.id !== id);
   saveBooks(remaining);
+}
+
+export function updateBook(id: string, updates: Partial<Book>): void {
+  if (typeof window === 'undefined') return;
+  const books = getBooks();
+  const updated = books.map(b => b.id === id ? { ...b, ...updates } : b);
+  saveBooks(updated);
 }
