@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import BookCard from '@/components/BookCard';
-import { Book } from '@/types';
+import { Book } from '@/data/books';
 
 interface FeaturedGridProps {
   books: Book[];
